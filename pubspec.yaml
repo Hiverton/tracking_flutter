@@ -21,9 +21,10 @@ environment:
   sdk: ">=2.12.0 <3.0.0"
 
 dependencies:
-  http: ^0.12.2
   flutter:
     sdk: flutter
+  http:
+  randomizer:
 
 
   # The following adds the Cupertino Icons font to your application.
@@ -52,6 +53,11 @@ flutter:
     - assets/news.png
     - assets/enviado_entrega.png
     - assets/entrega.png
+    - assets/mandala.png
+    - assets/fundo1.jpg
+    - assets/fundo2.jpg
+    - assets/fundo3.jpg
+    - assets/fundo4.jpg
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.

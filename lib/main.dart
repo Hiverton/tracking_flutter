@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'package:flutter/services.dart';
+import 'package:randomizer/randomizer.dart';
 
 void main() {
 
@@ -20,7 +21,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.pink,
         brightness: Brightness.dark
       ),
-      home: ListaPedidoView2(),
+      home: ListaPedidoView2() 
     );
   }
 }
@@ -64,7 +65,7 @@ _getCards(){
   return Card(
           color: Colors.white,
           shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(8.0),
+            borderRadius: BorderRadius.circular(2.0),
             side: new BorderSide(color: Colors.grey, width: 1.0)
           ),
           child: Container (
@@ -93,7 +94,7 @@ _getCardDadosCliente(){
   return Card(
           color: Colors.white,
           shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(8.0),
+            borderRadius: BorderRadius.circular(2.0),
             side: new BorderSide(color: Colors.grey, width: 1.0)
           ),
           child: Container (
@@ -215,14 +216,14 @@ _getCardCentralRelacionamento(){
   return Card(
           color: Colors.white,
           shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(8.0),
+            borderRadius: BorderRadius.circular(2.0),
             side: new BorderSide(color: Colors.grey, width: 1.0)
           ),
           child: Container (
             width: double.infinity,
             child: 
               Padding(
-                padding: const EdgeInsets.only(left: 8, top: 15, bottom: 15),
+                padding: const EdgeInsets.only(left: 8, top: 5, bottom: 5),
                 child: Column(
                   children: [
                     Padding(
@@ -233,7 +234,6 @@ _getCardCentralRelacionamento(){
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   mainAxisAlignment: MainAxisAlignment.start,
                                   children: [
-                                    
 
                                     SizedBox(height: 10,),
 
@@ -268,7 +268,6 @@ _getCardCentralRelacionamento(){
                                   ],
                                 ),
                                 SizedBox(width: 10,),
-                                
 
                               ],
                             ),
@@ -285,37 +284,62 @@ class TrackingView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      
       appBar: AppBar(
         title: Text('Pedido nº 7847631', style: const TextStyle(fontSize: 18)),
-        backgroundColor: Colors.pink[300],
+        backgroundColor: Colors.pink.shade300.withOpacity(0.85),
         elevation: 0,
       ),
-      backgroundColor: Colors.pink[300],
+      backgroundColor: Colors.pink.shade300.withOpacity(0.85),
       body: SingleChildScrollView(
-        child: Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Column(
-            children: [
-              SizedBox(height: 10,),
-              Image.asset('assets/accept.png'),
-              SizedBox(height: 10,),
-              Center(child: Text('Seu pedido foi entregue', 
-                style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold))),
-              SizedBox(height: 20,),
+        child: Stack(
+          children: [
+            SizedBox(
+              height: MediaQuery.of(context).size.height * 1.6,
+              width: MediaQuery.of(context).size.width,
+              child: 
+                Image.asset(
+                  getImageFundo(),
+                  fit: BoxFit.cover,
+                  height: MediaQuery.of(context).size.height,
+                  width: MediaQuery.of(context).size.width,
+                  alignment: Alignment.center,
+                ),
+            ),
+            
+            Container(
+              color: Colors.pink.shade300.withOpacity(0.85),
+              height: MediaQuery.of(context).size.height * 1.6,
+              width: MediaQuery.of(context).size.width,
+            ),
 
-              _getTitleCard('Acompanhamento do pedido'),
-              _getCards(),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Column(
+                children: [
+                  SizedBox(height: 10,),
+                  Image.asset('assets/accept.png'),
+                  SizedBox(height: 10,),
+                  Center(child: Text('Seu pedido foi entregue', 
+                    style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold))),
+                  SizedBox(height: 20,),
 
-              SizedBox(height: 20,),
-              _getTitleCard('Resumo do pedido'),
-              _getCardDadosCliente(),
+                  _getTitleCard('Acompanhamento do pedido'),
+                  _getCards(),
 
-              SizedBox(height: 20,),
-              _getTitleCard('Central de relacionamento'),
-              _getCardCentralRelacionamento()
+                  SizedBox(height: 20,),
+                  _getTitleCard('Resumo do pedido'),
+                  _getCardDadosCliente(),
 
-            ],
-          ),
+                  SizedBox(height: 20,),
+                  _getTitleCard('Central de relacionamento'),
+                  _getCardCentralRelacionamento(),
+                  _rowButtons()
+
+                ],
+              ),
+            ),
+          ],
         ),
       ),
     );
@@ -332,12 +356,12 @@ getTextStatus(status, param){
     return Text('$status', 
                     style: const TextStyle(fontSize: 18, 
                     color: Colors.green,
-                    fontWeight: FontWeight.bold));
+                    fontWeight: FontWeight.normal));
   } else {
     return Text('$status', 
                     style: const TextStyle(fontSize: 18, 
                     color: Colors.red,
-                    fontWeight: FontWeight.bold));
+                    fontWeight: FontWeight.normal));
   }
 }
 
@@ -345,16 +369,16 @@ _getItemList(pedido, data, status, icone, cor, param, context) {
   
 
   return Card(
-            
+            elevation: 0,
             color: Colors.white,
             shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(8.0),
-              side: new BorderSide(color: Colors.grey, width: 1.0)
+              borderRadius: BorderRadius.circular(2.0),
+              side: new BorderSide(color: Colors.black, width: 0.5)
             ),
             child: ListTile(
               trailing: Icon(Icons.arrow_right, color: Colors.grey),
               title: Padding(
-                padding: const EdgeInsets.only(left: 5, bottom: 5),
+                padding: const EdgeInsets.only(left: 5, bottom: 10, top: 10),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
@@ -383,12 +407,13 @@ class ListaPedidoView2 extends StatefulWidget {
 }
 
 class _ListaPedidoView2State extends State<ListaPedidoView2> {
-
   bool isSearching = false;
 
   @override
   Widget build(BuildContext context) {
+
     return Scaffold(
+    
       appBar: AppBar(
         title: !isSearching 
           
@@ -409,7 +434,7 @@ class _ListaPedidoView2State extends State<ListaPedidoView2> {
               )
             ),
 
-        backgroundColor: Colors.pink[300],
+        backgroundColor: Colors.pink.shade300.withOpacity(0.85),
         elevation: 0,
         actions: 
           <Widget>[
@@ -428,28 +453,53 @@ class _ListaPedidoView2State extends State<ListaPedidoView2> {
               })
         ],
       ),
-      backgroundColor: Colors.pink[300],
-      body: Padding(
-        padding: EdgeInsets.all(8),
-        child: ListView(
-                padding: const EdgeInsets.all(8),
-                children: [
-                  _getItemList('7989080', '11/11/2021', 'Pedido entregue', Icons.check_circle_outline, Colors.green, 1, context),
-                  _getItemList('7989080', '11/11/2021', 'Nota fiscal não autorizada', Icons.error, Colors.red, 2, context),
-                  _getItemList('7989080', '11/11/2021', 'Pedido entregue', Icons.check_circle_outline, Colors.green, 1, context),
-                  _getItemList('7989080', '11/11/2021', 'Pedido entregue', Icons.check_circle_outline, Colors.green, 1, context),
-                  _getItemList('7989080', '11/11/2021', 'Pedido entregue', Icons.check_circle_outline, Colors.green, 1, context),
-                  _getItemList('7989080', '11/11/2021', 'Cliente recusou', Icons.error, Colors.red, 2, context),
-                  _getItemList('7989080', '11/11/2021', 'Pagamento não autorizado', Icons.error, Colors.red, 2, context),
-                  _getItemList('7989080', '11/11/2021', 'Nota fiscal emitida', Icons.check_circle_outline, Colors.green, 1, context),
-                  
-                ],
-              ),
+
+      backgroundColor: Colors.pink.shade300.withOpacity(0.85),
+
+      body: Stack(
+        children: [
+          SizedBox(
+            height: MediaQuery.of(context).size.height,
+            child: Image.asset(getImageFundo(),
+              fit:BoxFit.cover,
+            ),
+          ),
+          Container(
+            color: Colors.pink.shade300.withOpacity(0.85),
+          ),
+
+          Padding(
+            padding: EdgeInsets.all(8),
+            child: ListView(
+                    padding: const EdgeInsets.all(8),
+                    children: [
+                      _getItemList('7989080', '11/11/2021', 'Pedido entregue', Icons.check_circle_outline, Colors.green, 1, context),
+                      _getItemList('7989080', '11/11/2021', 'Nota fiscal não autorizada', Icons.error, Colors.red, 2, context),
+                      _getItemList('7989080', '11/11/2021', 'Pedido entregue', Icons.check_circle_outline, Colors.green, 1, context),
+                      _getItemList('7989080', '11/11/2021', 'Pedido entregue', Icons.check_circle_outline, Colors.green, 1, context),
+                      _getItemList('7989080', '11/11/2021', 'Pedido entregue', Icons.check_circle_outline, Colors.green, 1, context),
+                      _getItemList('7989080', '11/11/2021', 'Cliente recusou', Icons.error, Colors.red, 2, context),
+                      _getItemList('7989080', '11/11/2021', 'Pagamento não autorizado', Icons.error, Colors.red, 2, context),
+                      _getItemList('7989080', '11/11/2021', 'Nota fiscal emitida', Icons.check_circle_outline, Colors.green, 1, context),
+                      
+                    ],
+                  ),
+          ),
+        ]
       ),
     );
   }
 }
 
+
+String getImageFundo() {
+    Randomizer randomizer = Randomizer();
+    
+    String  image = randomizer.getrandomelementfromlist(['assets/fundo1.jpg', 'assets/fundo2.jpg', 
+    'assets/fundo4.jpg']);
+    
+    return image;
+  }
 
 class MyHomePage extends StatefulWidget {
 
@@ -510,64 +560,27 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 }
 
-/*
-
-  _rowStatus('11/11/2021', 'Pedido gerado', 'accept.png'),
-  _rowStatus('11/11/2021', 'Aguardando emissão de nota fiscal', 'news.png'),
-  _rowStatus('11/11/2021', 'Nota fiscal aprovada', 'news_accept.png'),
-  _rowStatus('11/11/2021', 'Encaminhado para transportadora', 'enviado_entrega.png'),
-  _rowStatus('11/11/2021', 'Entregue', 'entrega.png'),
-  _rowButtons()
-
-*/
-
 _rowButtons(){
-  return Container(
-          width: double.infinity,
-          child: Row (
+  return Row (
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-
               RaisedButton(
-                color: Colors.pink,
+                color: Colors.purple,
                 onPressed: (){},
-                child: Text('Voltar', textAlign: TextAlign.center),
+                child: Text('Detalhe do pedido', textAlign: TextAlign.center),
                 textColor: Colors.white,
-                
               ),
-              
-              Container(width: 10,),
+              SizedBox(width: 10,),
 
               RaisedButton(
-                color: Colors.pink,
+                color: Colors.purple,
                 onPressed: (){},
-                child: Text('Informar problema na entrega', textAlign: TextAlign.center),
+                child: Text('Informar problema no pedido', textAlign: TextAlign.center),
                 textColor: Colors.white,
               )
               
             ],
-          )
-        );
-}
-
-_rowStatus(String data, String status, String image) {
-  return Padding(
-        padding: EdgeInsets.all(5),
-        child: Card (
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(2.0),
-          ),
-          child: Row(
-            children: [
-              Image.asset('assets/$image'),
-              Container(width: 10,),
-              Text(data),
-              Container(width: 10,),
-              Text(' - '),
-              Container(width: 10,),
-              Text(status)
-            ]),
-          )
+          
         );
 }
