@@ -153,7 +153,7 @@ _getCardDadosCliente(){
                                     ),
 
                                     SizedBox(height: 10,),
-                                    Text('Tipo de pedido: ',
+                                    Text('Tipo do pedido: ',
                                       style: const TextStyle(fontSize: 14, fontWeight: FontWeight.bold, color: Colors.black)
                                     ),
 
