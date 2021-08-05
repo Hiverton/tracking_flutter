@@ -24,7 +24,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.pink,
         brightness: Brightness.dark
       ),
-      initialRoute: '/home',
+      initialRoute: '/',
       routes: {
         '/': (context) => InicialView(),
         '/home': (context) => ListaPedidoView2(),

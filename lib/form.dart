@@ -48,7 +48,7 @@ class _FormReclamacaoState extends State<FormReclamacao> {
                     children: [
                       TextFormField(
                         style: const TextStyle(color: Colors.black),
-                        
+                        autofocus: true,
                         validator: (value) {
                           if (value == null || value.isEmpty) {
                             return 'Please enter some text';

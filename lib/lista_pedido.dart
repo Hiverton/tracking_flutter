@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:teste/tracking.dart';
 import 'package:teste/notificacoes.dart';
+import 'package:teste/pesquisa.dart';
 
 class ListaPedidoView2 extends StatefulWidget {
   @override
@@ -109,9 +110,10 @@ class _ListaPedidoView2State extends State<ListaPedidoView2> {
               })
             : IconButton(icon: Icon(Icons.search),
               onPressed: () {
-                setState((){
+                Navigator.push(context, MaterialPageRoute(builder: (context) => FormPesquisar()));
+                /*setState((){
                   this.isSearching = !this.isSearching;
-                });
+                });*/
               }),
 
               IconButton(
