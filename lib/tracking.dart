@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:teste/detalhe_pedido.dart';
+import 'package:teste/form.dart';
 
 class TrackingView extends StatelessWidget {
 
@@ -132,7 +133,9 @@ _rowButtons(context){
 
           RaisedButton(
             color: Colors.pink,
-            onPressed: (){},
+            onPressed: (){
+              Navigator.push(context, MaterialPageRoute(builder: (context) => FormReclamacao()));
+            },
             child: Text('Informar problema no pedido', textAlign: TextAlign.center),
             textColor: Colors.white,
           )

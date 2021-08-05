@@ -13,7 +13,36 @@ class _ListaPedidoView2State extends State<ListaPedidoView2> {
   Widget build(BuildContext context) {
 
     return Scaffold(
-    
+      drawer: Drawer(
+        child: Column(
+          children: [
+            SizedBox(height: 20),
+            UserAccountsDrawerHeader(
+              accountName: Text('Hiverton Alves'),
+              accountEmail: Text('hiverton.alves@gmail.com'),
+              currentAccountPicture: ClipRRect(
+                child: Image.asset('assets/mandala.png'),
+                borderRadius: BorderRadius.circular(40),
+              ) ,
+            ),
+            ListTile(
+              leading: Icon(Icons.home),
+              title: Text('Home'),
+              onTap: () {
+                Navigator.of(context).pushReplacementNamed('/home');
+              },
+            ),
+            ListTile(
+              leading: Icon(Icons.login),
+              title: Text('Logout'),
+              onTap: () {
+                Navigator.of(context).pushReplacementNamed('/');
+              },
+            )
+          ],
+        ),
+      ),
+
       appBar: AppBar(
         flexibleSpace: Container(
           decoration: BoxDecoration(

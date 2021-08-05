@@ -4,6 +4,8 @@ import 'dart:convert';
 import 'package:flutter/services.dart';
 import 'package:randomizer/randomizer.dart';
 import 'package:teste/lista_pedido.dart';
+import 'package:teste/tela_inicial.dart';
+
 
 void main() {
 
@@ -22,7 +24,12 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.pink,
         brightness: Brightness.dark
       ),
-      home: ListaPedidoView2() 
+      initialRoute: '/home',
+      routes: {
+        '/': (context) => InicialView(),
+        '/home': (context) => ListaPedidoView2(),
+      }
+      //home: ListaPedidoView2() 
     );
   }
 }
