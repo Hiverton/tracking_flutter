@@ -60,12 +60,33 @@ class _FormReclamacaoState extends State<FormReclamacao> {
                         padding: const EdgeInsets.symmetric(vertical: 16.0),
                         child: ElevatedButton(
                           onPressed: () {
-
+                                
                             if (_formKey.currentState!.validate()) {
                               ScaffoldMessenger.of(context).showSnackBar(
-
                                 const SnackBar(content: Text('Processing Data')),
-                              );
+                              );  
+
+                              showDialog<String>(
+                                  
+                                  barrierDismissible: true,
+                                  context: context,
+                                  builder: (BuildContext context) => AlertDialog(
+                                    backgroundColor: Colors.white,
+                                    title: const Text('Reclamação registrada com sucesso!', style: TextStyle(color: Colors.black),),
+                                    content: const Text('Em breve entraremos em contato', style: TextStyle(color: Colors.black),),
+                                    actions: <Widget>[
+                                      TextButton(
+                                        onPressed: () => Navigator.pop(context, 'Cancelar'),
+                                        child: const Text('Cancelar', style: TextStyle(color: Colors.black),),
+                                      ),
+                                      TextButton(
+                                        onPressed: () => Navigator.of(context).pushReplacementNamed('/home'),
+                                        child: const Text('OK', style: TextStyle(color: Colors.black),),
+                                      ),
+                                    ],
+                                  ),
+                                );
+
                             }
                           },
                           child: const Text('Enviar'),
@@ -82,4 +103,32 @@ class _FormReclamacaoState extends State<FormReclamacao> {
     );
   }
 
+}
+
+class MyStatelessWidget extends StatelessWidget {
+  const MyStatelessWidget({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return TextButton(
+      onPressed: () => showDialog<String>(
+        context: context,
+        builder: (BuildContext context) => AlertDialog(
+          title: const Text('AlertDialog Title'),
+          content: const Text('AlertDialog description'),
+          actions: <Widget>[
+            TextButton(
+              onPressed: () => Navigator.pop(context, 'Cancel'),
+              child: const Text('Cancel'),
+            ),
+            TextButton(
+              onPressed: () => Navigator.pop(context, 'OK'),
+              child: const Text('OK'),
+            ),
+          ],
+        ),
+      ),
+      child: const Text('Show Dialog'),
+    );
+  }
 }

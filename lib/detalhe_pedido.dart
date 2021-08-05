@@ -19,7 +19,7 @@ class DetalhePedidoView extends StatelessWidget {
             )
           ),
         ),
-        title: Text('Detalhe peddo nº 7847631', style: const TextStyle(fontSize: 18)),
+        title: Text('Detalhe do pedido nº 7847631', style: const TextStyle(fontSize: 18)),
         backgroundColor: Colors.pink,
         elevation: 0,
       ),

@@ -97,6 +97,10 @@ class TrackingView extends StatelessWidget {
                   _getCards(),
 
                   SizedBox(height: 20,),
+                   _getTitleCard('Dados da nota fiscal'),
+                   _dadosNotaFiscal(),
+
+                  SizedBox(height: 20,),
                   _getTitleCard('Resumo do pedido'),
                   _getCardDadosCliente(),
 
@@ -122,7 +126,7 @@ _rowButtons(context){
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           RaisedButton(
-            color: Colors.pink,
+            color: Colors.purple,
             onPressed: (){
               Navigator.push(context, MaterialPageRoute(builder: (context) => DetalhePedidoView()));
             },
@@ -132,7 +136,7 @@ _rowButtons(context){
           SizedBox(width: 10,),
 
           RaisedButton(
-            color: Colors.pink,
+            color: Colors.purple,
             onPressed: (){
               Navigator.push(context, MaterialPageRoute(builder: (context) => FormReclamacao()));
             },
@@ -189,6 +193,98 @@ _getCards(){
           );
 }
 
+_dadosNotaFiscal(){
+  return Card(
+          color: Colors.white,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(2.0),
+            side: new BorderSide(color: Colors.grey, width: 1.0)
+          ),
+          child: Container (
+            width: double.infinity,
+            child: 
+              Padding(
+                padding: const EdgeInsets.only(left: 8, top: 5, bottom: 5),
+                child: Column(
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.only(bottom: 10),
+                      child: Row(
+                              children: [
+                                Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  mainAxisAlignment: MainAxisAlignment.start,
+                                  children: [
+
+                                    SizedBox(height: 10,),
+
+                                    Text('NFE: ',
+                                      style: const TextStyle(fontSize: 14, fontWeight: FontWeight.bold, color: Colors.black)
+                                    ),
+
+                                    Text('358794-1',
+                                      style: const TextStyle(fontSize: 14, fontWeight: FontWeight.normal, color: Colors.black)
+                                    ),
+
+                                    SizedBox(height: 10,),
+
+                                    Text('Chave NFE: ',
+                                      style: const TextStyle(fontSize: 14, fontWeight: FontWeight.bold, color: Colors.black)
+                                    ),
+
+                                    Text('35210649323314000971550020001868091314918859',
+                                      style: const TextStyle(fontSize: 14, fontWeight: FontWeight.normal, color: Colors.black)
+                                    ),
+                                    
+                                    SizedBox(height: 10,),
+
+                                    Text('Data: ',
+                                      style: const TextStyle(fontSize: 14, fontWeight: FontWeight.bold, color: Colors.black)
+                                    ),
+
+                                    Text('11/11/2021',
+                                      style: const TextStyle(fontSize: 14, fontWeight: FontWeight.normal, color: Colors.black)
+                                    ),
+
+                                    SizedBox(height: 10,),
+
+                                    Row(
+                                      children: [
+                                        RaisedButton(
+                                          color: Colors.purple,
+                                          onPressed: (){
+                                            
+                                          },
+                                          child: Text('Baixar NF eletrônica', textAlign: TextAlign.center),
+                                          textColor: Colors.white,
+                                        ),
+
+                                        SizedBox(width: 20,),
+                                        
+                                        RaisedButton(
+                                          color: Colors.purple,
+                                          onPressed: (){
+                                            
+                                          },
+                                          child: Text('Comprovante de entrega', textAlign: TextAlign.center),
+                                          textColor: Colors.white,
+                                        ),
+                                      ],
+                                    )
+
+                                  ],
+                                ),
+                                SizedBox(width: 10,),
+
+                              ],
+                            ),
+                    ),
+                  ],
+                ),
+              )
+            ),
+          );
+}
 
 _getCardDadosCliente(){
 

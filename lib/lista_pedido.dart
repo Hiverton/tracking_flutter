@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:teste/tracking.dart';
+import 'package:teste/notificacoes.dart';
 
 class ListaPedidoView2 extends StatefulWidget {
   @override
@@ -14,32 +15,49 @@ class _ListaPedidoView2State extends State<ListaPedidoView2> {
 
     return Scaffold(
       drawer: Drawer(
-        child: Column(
-          children: [
-            SizedBox(height: 20),
-            UserAccountsDrawerHeader(
-              accountName: Text('Hiverton Alves'),
-              accountEmail: Text('hiverton.alves@gmail.com'),
-              currentAccountPicture: ClipRRect(
-                child: Image.asset('assets/mandala.png'),
-                borderRadius: BorderRadius.circular(40),
-              ) ,
-            ),
-            ListTile(
-              leading: Icon(Icons.home),
-              title: Text('Home'),
-              onTap: () {
-                Navigator.of(context).pushReplacementNamed('/home');
-              },
-            ),
-            ListTile(
-              leading: Icon(Icons.login),
-              title: Text('Logout'),
-              onTap: () {
-                Navigator.of(context).pushReplacementNamed('/');
-              },
-            )
-          ],
+        
+        child: Container(
+          color: Colors.white,
+          child: Column(
+            
+            children: [
+              SizedBox(height: 20),
+              UserAccountsDrawerHeader(
+                decoration: BoxDecoration(
+                  gradient: LinearGradient(
+                    begin: Alignment.topRight,
+                    end: Alignment.bottomLeft,
+                    colors: [
+                      Colors.pink.shade800,
+                      Colors.purple.shade800,
+                    ],
+                  )
+                ),
+                accountName: Text('Hiverton Alves'),
+                accountEmail: Text('hiverton.alves@gmail.com'),
+                currentAccountPicture: ClipRRect(
+                  child: Image.asset('assets/mandala.png'),
+                  borderRadius: BorderRadius.circular(40),
+                ) ,
+              ),
+              ListTile(
+                leading: Icon(Icons.home, color: Colors.black),
+                title: Text('Home', style: TextStyle(color: Colors.black),),
+                onTap: () {
+                  Navigator.of(context).pushReplacementNamed('/home');
+                },
+                trailing: Icon(Icons.arrow_right, color: Colors.black),
+              ),
+              ListTile(
+                leading: Icon(Icons.logout, color: Colors.black),
+                trailing: Icon(Icons.arrow_right, color: Colors.black),
+                title: Text('Logout', style: TextStyle(color: Colors.black),),
+                onTap: () {
+                  Navigator.of(context).pushReplacementNamed('/');
+                },
+              )
+            ],
+          ),
         ),
       ),
 
@@ -80,6 +98,8 @@ class _ListaPedidoView2State extends State<ListaPedidoView2> {
         elevation: 0,
         actions: 
           <Widget>[
+            
+
             this.isSearching
             ? IconButton(icon: Icon(Icons.cancel),
               onPressed: () {
@@ -92,7 +112,15 @@ class _ListaPedidoView2State extends State<ListaPedidoView2> {
                 setState((){
                   this.isSearching = !this.isSearching;
                 });
+              }),
+
+              IconButton(
+                icon: myAppBarIcon(context),
+                alignment: Alignment.centerLeft,
+                tooltip: 'Back',
+                onPressed: () {
               })
+              
         ],
 
       ),
@@ -223,4 +251,50 @@ getTextStatus(status, param){
                     color: Colors.red,
                     fontWeight: FontWeight.normal));
   }
+}
+
+Widget myAppBarIcon(context){
+return Container(
+  width: 30,
+  height: 30,
+  child: Stack(
+    children: [
+      GestureDetector(
+        onTap: () {
+          Navigator.push(context, MaterialPageRoute(builder: (context) => NotificacoesView()));
+        },
+        child: Icon(Icons.notifications, size: 30, color: Colors.white),
+      ),
+      
+      GestureDetector(
+        onTap: () {
+          Navigator.push(context, MaterialPageRoute(builder: (context) => NotificacoesView()));
+        },
+        child: Container(
+          
+          width: 30,
+          height: 50,
+          alignment: Alignment.topRight,
+          margin: EdgeInsets.only(top: 5, left: 10, right: 0),
+          child: Container(
+            width: 15,
+            height: 15,
+            decoration: BoxDecoration(
+                shape: BoxShape.circle,
+                color: Colors.pink.shade800,
+                border: Border.all(color: Colors.white, width: 1)),
+            child: Padding(
+              padding: const EdgeInsets.all(0.0),
+              child: Center(
+                child: Text('2',
+                  style: TextStyle(fontSize: 10),
+                ),
+              ),
+            ),
+          ),
+        ),
+      ),
+    ],
+  ),
+);
 }

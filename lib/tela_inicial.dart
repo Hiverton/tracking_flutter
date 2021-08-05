@@ -13,7 +13,7 @@ class _InicialViewState extends State<InicialView> {
   @override
   void initState() {
     super.initState();
-    Timer(Duration(seconds: 5), () => Navigator.of(context).pushReplacementNamed('/home'));
+    Timer(Duration(seconds: 3), () => Navigator.of(context).pushReplacementNamed('/home'));
   }
 
   @override
