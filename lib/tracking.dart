@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_simple_rating_bar/flutter_simple_rating_bar.dart';
 import 'package:teste/detalhe_pedido.dart';
 import 'package:teste/form.dart';
 
 class TrackingView extends StatelessWidget {
+
 
   @override
   Widget build(BuildContext context) {
@@ -26,6 +28,13 @@ class TrackingView extends StatelessWidget {
         elevation: 0,
       ),
       backgroundColor: Colors.white,
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          // Add your onPressed code here!
+        },
+        child: Image.asset('assets/whatzap1.jpeg'),
+        backgroundColor: Colors.green,
+      ),
       body: SingleChildScrollView(
         child: Stack(
           children: [
@@ -63,7 +72,7 @@ class TrackingView extends StatelessWidget {
               child: Column (
               
                 children: [
-
+                  
                   Container(
                     decoration: BoxDecoration(
                         gradient: LinearGradient(
@@ -92,18 +101,44 @@ class TrackingView extends StatelessWidget {
                   ),
 
                   SizedBox(height: 20,),
+                  
+                  Container(
+                    alignment: Alignment.center,
+                    
+                    child: RatingBar(
+                        rating: 0,
+                        icon:Icon(Icons.star, size:40,color: Colors.grey,),
+                        starCount: 5,
+                        spacing: 5.0,
+                        size: 40,
+                        isIndicator: false,
+                        allowHalfRating: true,
+                        onRatingCallback: (double value,ValueNotifier<bool> isIndicator){
+                            print('Number of stars-->  $value');
+                            isIndicator.value=false;
+                        },
+                        clickedCallbackAsIndicator: (){  
+                          print('clickedMe');
+                        },
+                        color: Colors.amber,
+                      ),
+                  ),
+                  
+                  SizedBox(height: 20,),
 
                   _getTitleCard('Acompanhamento do pedido'),
                   _getCards(),
 
                   SizedBox(height: 20,),
                    _getTitleCard('Dados da nota fiscal'),
-                   _dadosNotaFiscal(),
+                   _dadosNotaFiscal(context),
 
                   SizedBox(height: 20,),
                   _getTitleCard('Resumo do pedido'),
                   _getCardDadosCliente(),
 
+                  SizedBox(height: 20,),
+                  
                   SizedBox(height: 20,),
                   _getTitleCard('Central de relacionamento'),
                   _getCardCentralRelacionamento(),
@@ -193,7 +228,8 @@ _getCards(){
           );
 }
 
-_dadosNotaFiscal(){
+_dadosNotaFiscal(context){
+
   return Card(
           color: Colors.white,
           shape: RoundedRectangleBorder(
@@ -253,7 +289,7 @@ _dadosNotaFiscal(){
                                         RaisedButton(
                                           color: Colors.purple,
                                           onPressed: (){
-                                            
+                                              
                                           },
                                           child: Text('Baixar NF eletrônica', textAlign: TextAlign.center),
                                           textColor: Colors.white,
@@ -270,8 +306,7 @@ _dadosNotaFiscal(){
                                           textColor: Colors.white,
                                         ),
                                       ],
-                                    )
-
+                                    ),
                                   ],
                                 ),
                                 SizedBox(width: 10,),

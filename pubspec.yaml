@@ -25,6 +25,9 @@ dependencies:
     sdk: flutter
   http:
   randomizer:
+  get: ^3.23.1
+  flutter_barcode_scanner: ^1.0.1
+  flutter_simple_rating_bar: ^0.0.3
 
 
   # The following adds the Cupertino Icons font to your application.
@@ -58,6 +61,8 @@ flutter:
     - assets/fundo2.jpg
     - assets/fundo3.jpg
     - assets/fundo4.jpg
+    - assets/whatzap1.jpeg
+    - assets/whatzap2.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.

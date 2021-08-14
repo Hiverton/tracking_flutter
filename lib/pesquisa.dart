@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:teste/pesquisa_controller.dart';
 
 class FormPesquisar extends StatefulWidget {
   @override
@@ -8,6 +10,10 @@ class FormPesquisar extends StatefulWidget {
 class _FormPesquisarState extends State<FormPesquisar> {
 
   final _formKey = GlobalKey<FormState>();
+
+  _FormPesquisarState(){
+    Get.put(PesquisaController());
+  }
   
   @override
   Widget build(BuildContext context) {
@@ -138,14 +144,31 @@ class _FormPesquisarState extends State<FormPesquisar> {
       
                       SizedBox(height: 10,),
 
-                      Padding(
-                        padding: const EdgeInsets.symmetric(vertical: 16.0),
-                        child: ElevatedButton(
-                          onPressed: () {
-                            Navigator.of(context).pushReplacementNamed('/home');
-                          },
-                          child: const Text('Pesquisar'),
-                        ),
+                      Row(
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.symmetric(vertical: 16.0),
+                            child: ElevatedButton(
+                              onPressed: () {
+                                Navigator.of(context).pushReplacementNamed('/home');
+                              },
+                              child: const Text('Pesquisar'),
+                            ),
+                          ),
+
+                          SizedBox(width: 10,),
+
+                          Padding(
+                            padding: const EdgeInsets.symmetric(vertical: 16.0),
+                            child: ElevatedButton(
+                              onPressed: () {
+                                Get.find<PesquisaController>().escanearCodigoBarras(context);
+                              },
+                              child: const Text('Ler código de barras'),
+                            ),
+                          ),
+
+                        ],
                       ),
                     ],
                   ),

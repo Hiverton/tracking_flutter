@@ -51,7 +51,7 @@ class _FormReclamacaoState extends State<FormReclamacao> {
                         autofocus: true,
                         validator: (value) {
                           if (value == null || value.isEmpty) {
-                            return 'Please enter some text';
+                            return 'Digite uma mensagem!';
                           }
                           return null;
                         },
@@ -62,9 +62,9 @@ class _FormReclamacaoState extends State<FormReclamacao> {
                           onPressed: () {
                                 
                             if (_formKey.currentState!.validate()) {
-                              ScaffoldMessenger.of(context).showSnackBar(
+                              /*ScaffoldMessenger.of(context).showSnackBar(
                                 const SnackBar(content: Text('Processing Data')),
-                              );  
+                              );*/ 
 
                               showDialog<String>(
                                   
